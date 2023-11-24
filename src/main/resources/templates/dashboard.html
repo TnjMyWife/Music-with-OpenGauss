@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dark Radio</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link th:href="@{/css/dashboard.css}" rel="stylesheet">
+
+		<style type="text/css">
+			body {
+				background:url("/img/交互界面背景.gif")  no-repeat center;   /*加载背景图*/   /* 背景图不平铺 */
+				background-size:cover;  /* 让背景图基于容器大小伸缩 */
+				background-attachment:fixed;        /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+				background-color:#CCCCCC;   /* 设置背景颜色，背景图加载过程中会显示背景色 */
+			}
+		</style>
+	</head>
+
+	<body id="body">
+		<audio loop="loop" id="audioTag" preload="auto">
+			<source th:src="@{/music/UserMusic.mp3}" type="audio/mpeg"></source>
+		</audio>
+		<div class="audio-box">
+			<!-- LOGO -->
+			<div class="logo">
+				<img class="mb-1" th:src="@{/img/logo2.png}" alt="" width="147" height="50">
+			</div>
+			<!-- 左边按钮 -->
+			<div class="left-button-container">
+				<!-- 播放模式 -->
+				<div id="playMode" class="left-icon bg_size">
+					<img id="playModeImg" class="mb-1" th:src="@{/img/mode1.png}" alt="" width="20" height="20">
+				</div>
+				<!-- 上一首 -->
+				<div id="skipForward" class="left-icon bg_size">
+					<img class="mb-1" th:src="@{/img/上一首.png}" alt="" width="20" height="20">
+				</div>
+				<!-- 暂停按钮 -->
+				<div id="playPause" class="left-icon bg_size">
+					<img id="playImg" class="mb-1" th:src="@{/img/暂停.png}" alt="" width="20" height="20">
+				</div>
+				<!-- 下一首 -->
+				<div id="skipBackward" class="left-icon bg_size">
+					<img class=" mb-1" th:src="@{/img/下一首.png}" alt="" width="20" height="20">
+				</div>
+			</div>
+			<div class="cover">
+				<img class="mb-1" th:src="@{/img/cover1.jpg}" alt="" width="50" height="50">
+			</div>
+			<!-- 播放进度条 -->
+			<div class="progress-container">
+				<div class="pgs-total" id="progress-total">
+					<div class="pgs-play" id="progress" style="width: 0%;"></div>
+				</div>
+				<span class="song-name">Song title</span>
+				<span class="artist-name">Artist</span>
+			</div>
+
+			<!-- 音量调节 -->
+			<div class="vol-tog">
+				<div id="volume" class="left-icon bg_size">
+					<img id="volume-Img" class="mb-1" th:src="@{/img/音量.png}" alt="" width="20" height="20">
+				</div>
+				<!-- 音量悬浮窗 -->
+				<input type="range" id="volumn-togger" name="change" value="70" min="0" max="100" step="1">
+			</div>
+
+			<!-- 后部按钮 -->
+			<div class="bottom-button-container">
+				<!-- MV -->
+				<div id="MV" class="bottom-icon bg_size">
+					<img class="mb-1" th:src="@{/img/MV.png}" alt="" width="20" height="20">
+				</div>
+
+
+				<!-- 倍速 -->
+				<div id="speed" class="speed">1.0X</div>
+				<!-- 列表 -->
+				<div id="list" class="bottom-icon bg_size">
+					<img class="mb-1" th:src="@{/img/列表.png}" alt="" width="30" height="30">
+				</div>
+			</div>
+		</div>
+
+		<nav class="col-md-2 d-none d-md-block sidebar">
+			<div class="sidebar-sticky">
+				<div class="search-container">
+					<img class="mb-1" th:src="@{/img/搜索.png}" alt="" width="20" height="20">
+					<input type="text" class="search-input" placeholder="Search...">
+				</div>
+
+				<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+					<span>Radio Music</span>
+				</h6>
+
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="https://music.163.com/">
+							<img class="mb-1" th:src="@{/img/个人主页2.png}" alt="" width="20" height="20">
+							个人主页
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://music.163.com/">
+							<img class="mb-1" th:src="@{/img/浏览.png}" alt="" width="20" height="20">
+							浏览
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://music.163.com/">
+							<img class="mb-1" th:src="@{/img/私人推荐.png}" alt="" width="20" height="20">
+							私人推荐
+						</a>
+					</li>
+				</ul>
+
+				<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+					<span>资料库</span>
+				</h6>
+
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link" href="https://music.163.com/">
+							<img class="mb-1" th:src="@{/img/艺人.png}" alt="" width="20" height="20">
+							艺人
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://music.163.com/">
+							<img class="mb-1" th:src="@{/img/专辑.png}" alt="" width="20" height="20">
+							专辑
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="https://music.163.com/">
+							<img class="mb-1" th:src="@{/img/歌曲.png}" alt="" width="20" height="20">
+							歌曲
+						</a>
+					</li>
+				</ul>
+
+				<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+					  <span>我的歌单</span>
+					  <a class="d-flex align-items-center text-muted" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+					  </a>
+				</h6>
+				<ul class="nav flex-column mb-2">
+					<li class="nav-item">
+						<a class="nav-link" href="https://music.163.com/">
+							<img class="mb-1" th:src="@{/img/最近播放.png}" alt="" width="20" height="20">
+							最近播放
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">
+							<img class="mb-1" th:src="@{/img/我喜欢.png}" alt="" width="20" height="20">
+							我喜欢
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">
+							<img class="mb-1" th:src="@{/img/歌单.png}" alt="" width="20" height="20">
+							爵士
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">
+							<img class="mb-1" th:src="@{/img/歌单.png}" alt="" width="20" height="20">
+							古典
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="http://getbootstrap.com/docs/4.0/examples/dashboard/#">
+							<img class="mb-1" th:src="@{/img/歌单.png}" alt="" width="20" height="20">
+							电子
+						</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- 音乐列表 -->
+		<div class="no-list-area" id="no-list-area"></div>
+		<div class="list-area" id="list-area">
+			<div class="music-list-container">
+				<div class="music-list-title">播放队列</div>
+				<hr class="line">
+				<div class="all-list">
+					<div id="music0">如愿</div>
+					<div id="music1">Yellow</div>
+					<div id="music2">A Sky Full of Star</div>
+					<div id="music3">The Scientist</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- MV区域 -->
+		<div id = "mv-area" class="MV-area"></div>
+
+		<script th:src="@{/js/top-nav.js}"></script>
+	</body>
+
+</html>

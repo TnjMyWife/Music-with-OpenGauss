@@ -1,0 +1,408 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* 播放器样式设置*/
+.audio-box {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.36);
+}
+
+.logo {
+    width: 16.67%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(1,1,1,1);
+    z-index: 999;
+}
+
+/* 前面部分按钮 */
+.left-button-container {
+    width: 16.67%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-icon {
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.left-icon:hover {
+    opacity: 0.7;
+}
+
+.left-icon:active {
+    opacity: 0.6;
+}
+
+.bg_size {
+    background-size: 100% 100%;
+}
+
+/* 歌曲封面 */
+.cover {
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 进度条 */
+.progress-container {
+    width: 30%;
+    background-color: transparent;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pgs-total {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    position: relative;
+}
+
+.progress-container .pgs-total:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #4F4F4F;
+    z-index: -1;
+}
+
+.progress-container .pgs-total .pgs-play:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, black, #3f0016);
+    box-shadow: 0 5px 5px #3f0016, 0 5px 25px #3f0016, 0 5px 50px #3f0016, 0 5px 200px #3f0016;
+
+    z-index: 1;
+}
+
+.progress-container .pgs-total .pgs-play {
+    height: 100%;
+    position: relative;
+}
+
+.song-name {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 2;
+}   /* 歌曲名 */
+
+.artist-name {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translate(-50%, -50%);
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 11px;
+    font-weight: bold;
+    z-index: 2;
+}   /* 艺人名字 */
+
+/* 音量调节 */
+.vol-tog {
+    width: 16.67%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 重写音量调节条 */
+[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    outline: 0;
+    background-color: transparent;
+    width: 50%;
+}
+
+/* 定义range控件轨道的样式 */
+[type="range"]::-webkit-slider-runnable-track {
+    height: 2px;
+    background: #4F4F4F;
+}
+
+/* 定义range控件容器的样式 */
+[type="range" i]::-webkit-slider-container {
+    height: 20px;
+    overflow: hidden;
+}
+
+/* 定义range按钮的样式 */
+[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px; /* 进一步调整滑块宽度 */
+    height: 12px; /* 进一步调整滑块高度 */
+    border-radius: 50%;
+    background-color: #828282;
+    border: 1px solid #4F4F4F;
+    margin-top: -6px; /* 进一步调整垂直方向的居中偏移 */
+    /* 使用border-image属性给拇指添加渐变边框 */
+    border-image: linear-gradient(#828282, #828282) 0 fill / 6 10 6 0 / 0px 0px 0 2000px;
+}
+
+
+/* 尾部按钮 */
+.bottom-button-container {
+    width: 16.67%;
+    float: left;
+    display: flex;
+    text-align: left;
+
+}
+
+.bottom-icon {
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.bottom-icon:hover {
+    opacity: 0.7;
+}
+
+.bottom-icon:active {
+    opacity: 0.6;
+}
+/* 倍速调节 */
+.speed {
+    margin-left: 10px;
+    margin-right: 10px;
+    float: left;
+    font-weight: 300;
+    color: lightgray;
+}
+
+.speed:hover {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.speed:active {
+    opacity: 0.6;
+    cursor: default;
+}
+
+
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    background-color: rgba(1,1,1,0.5);
+}
+
+.sidebar-sticky {
+    position: sticky;
+    top: 50px; /* Height of navbar */
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 2px solid #CCCCCC;
+    border-radius: 15px; /* 设置边缘为圆形 */
+    overflow: hidden;
+    padding: 5px;
+}
+
+.search-input {
+    border: none;
+    border-radius: 15px;
+    outline: none;
+    flex: 1;
+    background-color: transparent;
+    color: #CCCCCC;
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #CCCCCC;
+}
+
+.sidebar .nav-link:hover {
+    font-weight: 500;
+    opacity: 0.5;
+}
+
+.sidebar .nav-link:active {
+    font-weight: 500;
+    color: #CCCCCC;
+}
+
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+    font-weight: 500;
+    opacity: 0.5;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+
+/* 音乐列表 */
+.no-list-area {
+    display: none;
+    position: fixed;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 75%;
+}
+
+.list-area {
+    display: none;
+    position: fixed;
+    height: 100%;
+    right: 0;
+    top: 50px;
+    width: 20%;
+    background-color: rgba(1,1,1,0.5);
+}
+
+.music-list-container {
+    width: 100%;
+}
+
+.music-list-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    padding: 10% 15% 0% 15%;
+}
+
+.line {
+    height: 1px;
+    width: 70%;
+    border: none;
+    border-top: 1px dashed #4F4F4F;
+}
+
+.all-list div {
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-weight: 300;
+    padding: 0% 15% 0% 15%;
+}
+
+.all-list div:hover {
+    background: linear-gradient(90deg, black, #3f0016);
+    cursor: default;
+}
+
+.list-card-show {
+    animation: showAni;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.list-card-hide {
+    animation: hideAni;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+@keyframes hideAni {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes showAni {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+/* MV区域 */
+.MV-area {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    background-color: transparent;
+}
+
+.MV-area video {
+    max-height: 80%;
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+
