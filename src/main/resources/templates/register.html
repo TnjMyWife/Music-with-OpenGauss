@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Welcome To Dark Radio</title>
+        <!-- Bootstrap core CSS -->
+        <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link th:href="@{/css/signin.css}" rel="stylesheet">
+    </head>
+
+    <style>
+        body {
+            background:url("/img/登陆背景(2).gif")  no-repeat center;   /*加载背景图*/   /* 背景图不平铺 */
+            background-size:cover;  /* 让背景图基于容器大小伸缩 */
+            background-attachment:fixed;        /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+            background-color:#CCCCCC;   /* 设置背景颜色，背景图加载过程中会显示背景色 */
+
+        }
+    </style>
+
+    <body class="text-center">
+        <audio autoplay="autoplay" loop="loop" id="bg-music" preload="auto">
+            <source th:src="@{/music/LoginMusic.mp3}" type="audio/mpeg"></source>
+        </audio>
+        <form class="form-signin" th:action="@{/user/regist}">
+            <img class="mb-2" style=" justify-content: center; " th:src="@{/img/logo2.png}" alt="" width="300" height="150">
+            <h1 class="h4 mb-3 text-light">Register Your Account</h1>
+            <label class="sr-only">Username</label>
+            <input type="text" name="username" class="form-control mb-3" placeholder="用户名" required="" autofocus="">
+            <p class="mt-1 mb-1" style="text-align: left; color: red;" th:text="${userRepeat}" th:if="${not #strings.isEmpty(userRepeat)}"></p>
+            <label class="sr-only">Password</label>
+            <input type="password" name="password" class="form-control mb-3" placeholder="密码" required="">
+            <label class="sr-only">Email</label>
+            <input type="text" name="email" class="form-control mb-3" placeholder="邮箱" required="" autofocus="">
+            <label class="sr-only">gender</label>
+            <input type="text" name="gender" class="form-control mb-3" placeholder="性别，请输入男或女" required="" autofocus="">
+            <p class="mt-1 mb-1" style="text-align: left; color: red;" th:text="${genderWrong}" th:if="${not #strings.isEmpty(genderWrong)}"></p>
+
+            <button class="btn btn-lg btn-outline-light" type="submit">Register</button>
+            <p class="mt-3 mb-3 text-muted">© 2023</p>
+        </form>
+    </body>
+
+</html>

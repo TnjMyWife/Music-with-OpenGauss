@@ -6,6 +6,8 @@ import com.music.service.userService;
 import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 
@@ -28,5 +30,15 @@ public class userServiceImpl implements userService {
     public User userExist(String userName, String password) {
         return u.findUserByUserNameAndPassword(userName, password);
     }
+
+    @Override
+    public User isUserUnique(String userName) {
+        return u.findUserByUserName(userName);
+    }
+
+    @Transactional
+    @Override
+    public int save(User newUser){ return u.saveOne(newUser); }
+
 
 }

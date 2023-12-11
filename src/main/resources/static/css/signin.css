@@ -22,7 +22,7 @@ body {
     width: 25%;
     padding: 15px;
     align-items: center;
-    justify-content: center; /* 将水平对齐方式改为左对齐 */
+    justify-content: center;
 }
 
 .form-signin .checkbox {
