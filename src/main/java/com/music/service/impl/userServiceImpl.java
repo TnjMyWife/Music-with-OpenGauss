@@ -36,7 +36,7 @@ public class userServiceImpl implements userService {
         return u.findUserByUserName(userName);
     }
 
-    @Transactional
+
     @Override
     public int save(User newUser){ return u.saveOne(newUser); }
 
