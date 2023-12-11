@@ -14,13 +14,19 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/index.html").setViewName("index");
 
-        registry.addViewController("/dashboard").setViewName("dashboard");
-        registry.addViewController("/dashboard.html").setViewName("dashboard");
-    }
+        registry.addViewController("/homepage").setViewName("homepage");
+        registry.addViewController("/homepage.html").setViewName("homepage");
 
+        registry.addViewController("/register").setViewName("register");
+        registry.addViewController("/register.html").setViewName("register");
+    }
+/*
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/index", "/", "/user/login", "/css/**", "/img/**", "/js/**", "/music/**", "/video/**");
+        registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns
+                ("/register" ,"/index", "/",
+                "/user/login", "/user/regist",
+                "/css/**", "/img/**", "/js/**", "/music/**", "/video/**");
     }
-
+*/
 }

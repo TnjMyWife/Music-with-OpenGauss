@@ -26,7 +26,7 @@ public class LoginController {
         /* 获取到提交的表单的username、password后，验证用户名密码是否正确 */
         if(user != null){
             session.setAttribute("loginUser", userName);
-            return "redirect:/dashboard";   /* 登录成功，跳转到dashboard.html页面 */
+            return "redirect:/homepage";   /* 登录成功，跳转到dashboard.html页面 */
         }else{
             /* 显示登陆失败,通过model向页面传递值 */
             model.addAttribute("msg","Invalid username or password.");
