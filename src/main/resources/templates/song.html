@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Dark Radio</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/homepage.css}" rel="stylesheet">
+    <link th:href="@{/css/browserSong.css}" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background:url("/img/交互界面背景.gif")  no-repeat center;   /*加载背景图*/   /* 背景图不平铺 */
+            background-size:cover;  /* 让背景图基于容器大小伸缩 */
+            background-attachment:fixed;        /* 当内容高度大于图片高度时，背景图像的位置相对于viewport固定 */
+            background-color:#CCCCCC;   /* 设置背景颜色，背景图加载过程中会显示背景色 */
+        }
+    </style>
+</head>
+
+<body id="body">
+
+<audio loop="loop" id="audioTag" preload="auto">
+    <source id="audioSource" th:src="@{/music/UserMusic.mp3}" type="audio/mpeg"></source>
+</audio>
+<div class="audio-box">
+    <!-- LOGO -->
+    <div id="logo" class="logo">
+        <img class="mb-1" th:src="@{/img/logo2.png}" alt="" width="147" height="50">
+    </div>
+    <!-- 左边按钮 -->
+    <div class="left-button-container">
+        <!-- 播放模式
+        <div id="playMode" class="left-icon bg_size">
+            <img id="playModeImg" class="mb-1" th:src="@{/img/mode1.png}" alt="" width="20" height="20">
+        </div>-->
+        <!-- 上一首
+        <div id="skipForward" class="left-icon bg_size">
+            <img class="mb-1" th:src="@{/img/上一首.png}" alt="" width="20" height="20">
+        </div>-->
+        <!-- 暂停按钮 -->
+        <div id="playPause" class="left-icon bg_size">
+            <img id="playImg" class="mb-1" th:src="@{/img/暂停.png}" alt="" width="20" height="20">
+        </div>
+        <!-- 下一首
+        <div id="skipBackward" class="left-icon bg_size">
+            <img class=" mb-1" th:src="@{/img/下一首.png}" alt="" width="20" height="20">
+        </div> -->
+    </div>
+    <div class="cover" >
+        <img id="coverSource" class="mb-1" th:src="@{/img/cover1.jpg}" alt="" width="50" height="50">
+    </div>
+    <!-- 播放进度条 -->
+    <div class="progress-container">
+        <div class="pgs-total" id="progress-total">
+            <div class="pgs-play" id="progress" style="width: 0%;"></div>
+        </div>
+        <span id="songName" class="song-name">Song title</span>
+        <span id="artistName" class="artist-name">Artist</span>
+    </div>
+
+    <!-- 音量调节 -->
+    <div class="vol-tog">
+        <div id="volume" class="left-icon bg_size">
+            <img id="volume-Img" class="mb-1" th:src="@{/img/音量.png}" alt="" width="20" height="20">
+        </div>
+        <!-- 音量悬浮窗 -->
+        <input type="range" id="volumn-togger" name="change" value="10" min="0" max="100" step="1">
+    </div>
+
+    <!-- 后部按钮 -->
+    <div class="bottom-button-container">
+        <!-- MV -->
+        <div id="MV" class="bottom-icon bg_size">
+            <img class="mb-1" th:src="@{/img/MV.png}" alt="" width="20" height="20">
+        </div>
+
+
+        <!-- 倍速 -->
+        <div id="speed" class="speed">1.0X</div>
+        <!-- 列表 -->
+        <div id="list" class="bottom-icon bg_size">
+            <img class="mb-1" th:src="@{/img/列表.png}" alt="" width="30" height="30">
+        </div>
+    </div>
+</div>
+
+<nav class="col-md-2 d-none d-md-block sidebar">
+    <div class="sidebar-sticky">
+        <div class="search-container">
+            <form action="/search" method="post">
+                <input style="display: none" name="user_id" th:value="${session.userId}">
+                <input type="text" name="query_string" class="search-input" placeholder="Search...">
+                <input type="image" style="margin-top: 5px" th:src="@{/img/搜索.png}" alt="提交" width="20" height="20">
+            </form>
+        </div>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Radio Music</span>
+        </h6>
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:getUrl()">
+                    <img class="mb-1" th:src="@{/img/个人主页2.png}" alt="" width="20" height="20">
+                    个人主页
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:getUrl3()">
+                    <img class="mb-1" th:src="@{/img/私人推荐.png}" alt="" width="20" height="20">
+                    私人推荐
+                </a>
+            </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>浏览</span>
+        </h6>
+
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:getUrlBrowserArtist()">
+                    <img class="mb-1" th:src="@{/img/艺人.png}" alt="" width="20" height="20">
+                    艺人
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="javascript:getUrlBrowserAlbum()">
+                    <img class="mb-1" th:src="@{/img/专辑.png}" alt="" width="20" height="20">
+                    专辑
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>我的歌单</span>
+        </div>
+        <ul class="nav flex-column mb-2">
+            <li class="nav-item" th:each="playlist,stat : ${session.myList}" th:if="${stat.index == 0}">
+                <a class="nav-link" th:href="'javascript:redirectToController(\'' + ${playlist.user.userId} + '\', \'' + ${playlist.listName} + '\')'">
+                    <img class="mb-1" th:src="@{/img/我喜欢.png}" alt="" width="20" height="20">
+                    我喜欢
+                </a>
+            </li>
+            <li class="nav-item" th:each="playlist,stat : ${session.myList}" th:if="${stat.index != 0}">
+                <a class="nav-link" id="test" th:href="'javascript:redirectToController(\'' + ${playlist.user.userId} + '\', \'' + ${playlist.listName} + '\')'">
+                    <img class="mb-1" th:src="@{/img/歌单.png}" alt="" width="20" height="20"  th:text="${playlist.listName}">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div class="main">
+    <div class="list-container">
+        <div  th:each="item: ${songList}" class="list-item">
+            <div  class="background" >
+                <img th:src="${item.album.albumCover}" >
+
+                <button class="button" th:text="${item.songName}" th:attr="musicPath=${item.songPath},
+                musicImgPath=${item.album.albumCover},songName=${item.songName},artistName=${item.artist.artistName}"
+                        onclick="changeMusic(this.getAttribute('musicPath'),this.getAttribute('musicImgPath')
+                        ,this.getAttribute('songName'),this.getAttribute('artistName'))">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 音乐列表 -->
+<div class="no-list-area" id="no-list-area"></div>
+<div class="list-area" id="list-area">
+    <div class="music-list-container">
+        <div class="music-list-title">播放队列</div>
+        <hr class="line">
+        <div class="all-list" th:each="song, iterStat : ${songList}">
+            <div id="music0" th:text="${song.songName}" th:attr="musicPath=${song.songPath},
+                musicImgPath=${song.album.albumCover},songName=${song.songName},
+                artistName=${song.artist.artistName}"
+                 onclick="changeMusic(this.getAttribute('musicPath'),this.getAttribute('musicImgPath')
+                        ,this.getAttribute('songName'),this.getAttribute('artistName'))"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- MV区域 -->
+<div id = "mv-area" class="MV-area"></div>
+
+<script th:src="@{/js/top-nav.js}"></script>
+<script>
+    var url = decodeURI(window.location.href);
+    var aa = url.indexOf('=');
+    if (aa > -1) {
+        var url=decodeURI(window.location .href);
+        var aa=url.indexOf('=');
+        if (aa>-1){
+            url=url.substring(aa+1);
+            document.getElementById("user_id").value=url;
+        }
+    }
+    function getUrl(){
+        window.location.href="/home?user_id="+url
+    }
+    function getUrl3() {
+        window.location.href = "/browser_song?user_id=" + url
+    }
+    function getUrlBrowserArtist(){
+        window.location.href="/browser_artist?user_id="+url
+    }
+    function getUrlBrowserAlbum(){
+        window.location.href="/browser_album?user_id="+url
+    }
+</script>
+<script>
+    function changeMusic(url,imgPath,songName,artistName) {
+
+        // 获取音频标签和音频源标签
+        var audioTag = document.getElementById("audioTag");
+        var audioSource = document.getElementById("audioSource");
+        var coverSource = document.getElementById("coverSource");
+        var songNameText = document.getElementById("songName");
+        var artistNameText = document.getElementById("artistName");
+        // 设置音频源标签的 src 属性为新的音乐地址
+        audioSource.src = url;
+        coverSource.src=imgPath;
+        songNameText.textContent=songName;
+        artistNameText.textContent=artistName;
+        audioTag.load();
+        // 播放音乐
+        audioTag.play();
+        playImg.src = '/img/继续播放.png';
+
+    }
+</script>
+<script>
+    // 使用 JavaScript 获取当前页面的路径并设置为隐藏字段的值
+    var temp = decodeURI(window.location.href);
+    document.getElementById('currentPage').value = temp;
+</script>
+<script>
+    function redirectToController(param1, param2) {
+        // 构建带有参数的URL
+        // 通过编程方式进行页面导航
+        window.location.href = '/list?user_id=' + param1 + '&listName=' + param2;
+    }
+</script>
+<script>
+    var logo = document.getElementById("logo")
+    logo.addEventListener('click', function() {
+        window.location.href = '/homepage?user_id='+url;
+    });
+</script>
+</body>
+
+</html>

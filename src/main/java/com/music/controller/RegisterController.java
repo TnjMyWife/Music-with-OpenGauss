@@ -26,7 +26,7 @@ public class RegisterController {
         user.setUserId(u.findAllUser().size());
         user.setUserName(userName);
         user.setPassword(password);
-        user.setAvatar("/opt/musicfile/default.jpg");
+        user.setAvatar("/opt/musicfile/user_img/default.jpg");
         user.setEmail(email);
         user.setGender(gender);
         user.setSignature("这个用户似乎有点懒");

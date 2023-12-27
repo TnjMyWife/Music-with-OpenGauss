@@ -1,0 +1,42 @@
+.main {
+    overflow-y: auto;
+    height: 95%;
+    width: 82.5%;
+    position: fixed;
+    right: 0;
+}
+
+.container {
+    width: 100%;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.one-row {
+    display: flex;
+    max-width: 100%;
+    height: 40%;
+    justify-items: start;
+}
+
+.info {
+    max-width: 30%;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: start;
+}
+
+.album-name {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.name {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 12px;
+}

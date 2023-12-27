@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Dark Radio</title>
+		<!-- Bootstrap core CSS -->
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+		<!-- Custom styles for this template -->
+		<link th:href="@{/css/albumpage.css}" rel="stylesheet">
+		<link th:href="@{/css/homepage.css}" rel="stylesheet">
+		<link th:href="@{/css/userHome.css}" rel="stylesheet">
+		<style type="text/css">
+			body {
+				font-family: "Roboto", sans-serif;
+				height: 100vh;
+				display: flex;
+				background-image: url("/img/交互界面背景.gif");
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-size: cover;
+				background-position: top;
+
+			}
+
+			.bg {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100vw;
+				height: 100vh;
+				background-image: url("/img/交互界面背景.gif");
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-size: cover;
+				background-position: top;
+				filter: blur(10px);
+			}
+
+			.g-glossy {
+				position: absolute;
+				top: 10%;
+				left: 19%;
+				right: 2%;
+				bottom: 5%;
+				margin: auto;
+				/*width: 900px;*/
+				/*height: 700px;*/
+				/*line-height: 300px;*/
+				display: flex;
+				justify-content: flex-start;
+				align-items: flex-start;
+
+				color: #fff;
+				font-size: 30px;
+				background-color: rgba(255, 255, 255, 0.2);
+				/*overflow: hidden;*/
+				z-index: 10;
+
+				&::before {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					background-image: url("/img/交互界面背景.gif");
+					background-repeat: no-repeat;
+					background-attachment: fixed;
+					background-size: cover;
+					background-position: top;
+					filter: blur(10px);
+					z-index: -1;
+				}
+			}
+		</style>
+
+
+
+	</head>
+
+
+
+
+
+	<body id="body">
+
+<!--	<div class="background-image"></div>-->
+
+		<audio loop="loop" id="audioTag" preload="auto">
+			<source id="audioSource" th:src="@{/music/UserMusic.mp3}" type="audio/mpeg"></source>
+		</audio>
+		<div class="audio-box">
+			<!-- LOGO -->
+			<div id="logo" class="logo">
+				<img class="mb-1" th:src="@{/img/logo2.png}" alt="" width="147" height="50">
+			</div>
+			<!-- 左边按钮 -->
+			<div class="left-button-container">
+				<!-- 暂停按钮 -->
+				<div id="playPause" class="left-icon bg_size">
+					<img id="playImg" class="mb-1" th:src="@{/img/暂停.png}" alt="" width="20" height="20">
+				</div>
+			</div>
+			<div id="coverTag" class="cover">
+				<img id="coverSource" class="mb-1" th:src="@{/img/cover1.jpg}" alt="" width="50" height="50">
+			</div>
+			<!-- 播放进度条 -->
+			<div class="progress-container">
+				<div class="pgs-total" id="progress-total">
+					<div class="pgs-play" id="progress" style="width: 0%;"></div>
+				</div>
+				<span id="songName" class="song-name">Song title</span>
+				<span id="artistName" class="artist-name">Artist</span>
+			</div>
+
+			<!-- 音量调节 -->
+			<div class="vol-tog">
+				<div id="volume" class="left-icon bg_size">
+					<img id="volume-Img" class="mb-1" th:src="@{/img/音量.png}" alt="" width="20" height="20">
+				</div>
+				<!-- 音量悬浮窗 -->
+				<input type="range" id="volumn-togger" name="change" value="10" min="0" max="100" step="1">
+			</div>
+
+			<!-- 后部按钮 -->
+			<div class="bottom-button-container">
+				<!-- 倍速 -->
+				<div id="speed" class="speed">1.0X</div>
+
+			</div>
+		</div>
+
+<nav class="col-md-2 d-none d-md-block sidebar">
+	<div class="sidebar-sticky">
+		<div class="search-container">
+			<form action="/search" method="post">
+				<input style="display: none" name="user_id" th:value="${session.userId}">
+				<input type="text" name="query_string" class="search-input" placeholder="Search...">
+				<input type="image" style="margin-top: 5px" th:src="@{/img/搜索.png}" alt="提交" width="20" height="20">
+			</form>
+		</div>
+
+		<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+			<span>Radio Music</span>
+		</h6>
+
+		<ul class="nav flex-column">
+			<li class="nav-item">
+				<a class="nav-link" href="javascript:getUrl()">
+					<img class="mb-1" th:src="@{/img/个人主页2.png}" alt="" width="20" height="20">
+					个人主页
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<a class="nav-link" href="javascript:getUrl3()">
+					<img class="mb-1" th:src="@{/img/私人推荐.png}" alt="" width="20" height="20">
+					私人推荐
+				</a>
+			</li>
+		</ul>
+
+		<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+			<span>浏览</span>
+		</h6>
+
+		<ul class="nav flex-column">
+			<li class="nav-item">
+				<a class="nav-link" href="javascript:getUrlBrowserArtist()">
+					<img class="mb-1" th:src="@{/img/艺人.png}" alt="" width="20" height="20">
+					艺人
+				</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="javascript:getUrlBrowserAlbum()">
+					<img class="mb-1" th:src="@{/img/专辑.png}" alt="" width="20" height="20">
+					专辑
+				</a>
+			</li>
+		</ul>
+
+		<div class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+			<span>我的歌单</span>
+		</div>
+		<ul class="nav flex-column mb-2">
+			<li class="nav-item" th:each="playlist,stat : ${session.myList}" th:if="${stat.index == 0}">
+				<a class="nav-link" th:href="'javascript:redirectToController(\'' + ${playlist.user.userId} + '\', \'' + ${playlist.listName} + '\')'">
+					<img class="mb-1" th:src="@{/img/我喜欢.png}" alt="" width="20" height="20">
+					我喜欢
+				</a>
+			</li>
+			<li class="nav-item" th:each="playlist,stat : ${session.myList}" th:if="${stat.index != 0}">
+				<a class="nav-link" id="test" th:href="'javascript:redirectToController(\'' + ${playlist.user.userId} + '\', \'' + ${playlist.listName} + '\')'">
+					<img class="mb-1" th:src="@{/img/歌单.png}" alt="" width="20" height="20"  th:text="${playlist.listName}">
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+
+
+
+
+		<!-- 专辑内部区域 -->
+		<div class="g-glossy" >
+					<div class="albuminside1">
+						<div class="cover_inside">
+							<img  th:src="${album.albumCover}" alt="cover"  width="100%" height="100%">
+						</div>
+						<div class="album_info1">
+							<span class="album-name_inside" th:text="${album.albumName}"></span>
+
+							<span class="artist-name_inside" th:text="${album.artist.artistName} + ' · ' + ${album.type} + ' ' + ${album.albumDate}"></span>
+						</div>
+					</div>
+
+					<div class="albuminside2">
+						<span class="publisher_inside" th:text="${album.albumPub}"> </span>
+					</div>
+
+					<div class="albuminside3">
+						<div th:each="song,iterStat: ${songs}"  class="child-element" th:style="'top:' + ((${iterStat.index}) * 8) + '%'">
+							<div class="song1"  th:attr="musicPath=${song.songPath},musicImgPath=${song.album.albumCover},songName=${song.songName},
+                artistName=${song.artist.artistName}"
+								 onclick="changeMusic(this.getAttribute('musicPath'),this.getAttribute('musicImgPath')
+                        ,this.getAttribute('songName'),this.getAttribute('artistName'))">
+								<div class="song-no_inside">
+									<span class="song-number_inside" th:text="${song.songNum}"></span>
+								</div>
+								<div class="song-title_inside">
+									<span class="song-name_inside" th:text="${song.songName}"></span>
+								</div>
+								<div class="song-dura_inside">
+									<span class="song-duration_inside" th:text="${formattedDurations[iterStat.index]}"></span>
+								</div>
+							</div>
+							<div class="song2">
+								<svg th:data-song-id="${song.songId}" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+							</div>
+							<div class="popup" id="popup" th:each="playlist, stat : ${session.myList}" >
+								<form class="form-signin" action="/addsong" enctype="multipart/form-data" method="post" >
+									<input type="hidden" id="currentPage" name="page">
+									<input type="hidden" id="songIdInput" name="song_id">
+									<input type="hidden" id="user_id" name="user_id">
+									<select class="select-gender" id="addName" name="addName" title="Choose a name">
+										<option value="">请选择要添加到的歌单</option>
+										<option  th:each="list, stat2 : ${session.myList}" th:text="${list.listName}"></option>
+									</select>
+									<p style="color: red; font-size: 11px; font-weight: bold;" th:text="${errorInfo}" th:if="${not #strings.isEmpty(errorInfo)}"></p>
+									<button class="sub-mit" type="submit">添加</button>
+									<button class="can-cel" id="close-popup">关闭</button>
+								</form>
+							</div>
+						</div>
+
+
+						</div>
+
+					</div>
+				</a>
+
+
+		</div>
+
+		<script th:src="@{/js/top-nav.js}"></script>
+		<script>
+			var url = decodeURI(window.location.href);
+			var eqIndex = url.indexOf('='); // 找到等号的位置
+			if (eqIndex > -1) {
+				var ampIndex = url.indexOf('&', eqIndex); // 从等号位置开始找第一个&的位置
+				if (ampIndex == -1) { // 如果找不到&，截取到URL的末尾
+					ampIndex = url.length;
+				}
+				var userId = url.substring(eqIndex + 1, ampIndex); // 截取user_id的值
+				document.getElementById("user_id").value = userId;
+			}
+			function getUrl(){
+				window.location.href="/home?user_id="+userId
+			}
+			function getUrl3() {
+				window.location.href = "/browser_song?user_id=" + userId
+			}
+			function getUrlBrowserArtist(){
+				window.location.href="/browser_artist?user_id="+userId
+			}
+			function getUrlBrowserAlbum(){
+				window.location.href="/browser_album?user_id="+userId
+			}
+			function getUrlOneAlbum(albumId){
+				window.location.href="/one_album?user_id="+userId+"&album_id="+albumId
+			}
+		</script>
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// 选择所有SVG元素
+				var svgs = document.querySelectorAll('.song2 svg');
+
+				svgs.forEach(function(svg) {
+					svg.addEventListener('click', function(event) {
+						// 获取当前点击的SVG元素的song_id
+						var songId = event.currentTarget.getAttribute('data-song-id');
+
+						// 设置表单中的song_id值
+						document.getElementById('songIdInput').value = songId;
+						document.getElementById("user_id").value = userId;
+						// 显示表单
+						document.getElementById('popup').style.display = 'block';
+					});
+				});
+			});
+		</script>
+		<script>
+			// 使用 JavaScript 获取当前页面的路径并设置为隐藏字段的值
+			var temp = decodeURI(window.location.href);
+			document.getElementById('currentPage').value = temp;
+		</script>
+		<script>
+			function redirectToController(param1, param2) {
+				window.location.href = '/list?user_id=' + param1 + '&listName=' + param2;
+			}
+		</script>
+		<script>
+			var logo = document.getElementById("logo")
+			logo.addEventListener('click', function() {
+				window.location.href = '/homepage?user_id='+userId;
+			});
+		</script>
+		<script>
+			function changeMusic(url,imgPath,songName,artistName) {
+
+				// 获取音频标签和音频源标签
+				var audioTag = document.getElementById("audioTag");
+				var audioSource = document.getElementById("audioSource");
+				var coverSource = document.getElementById("coverSource");
+				var songNameText = document.getElementById("songName");
+				var artistNameText = document.getElementById("artistName");
+				// 设置音频源标签的 src 属性为新的音乐地址
+				audioSource.src = url;
+				coverSource.src=imgPath;
+				songNameText.textContent=songName;
+				artistNameText.textContent=artistName;
+				audioTag.load();
+				// 播放音乐
+				audioTag.play();
+				playImg.src = '/img/继续播放.png';
+
+			}
+		</script>
+
+
+	</body>
+
+</html>

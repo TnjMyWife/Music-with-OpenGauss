@@ -1,0 +1,244 @@
+.main {
+    height: 95%;
+    width: 80%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    right: 2%;
+}
+
+.avatar-name {
+    display: flex;
+    height: 40%;
+    max-width: 90%;
+    top: 5%;
+    align-items: center;
+    align-content: center;
+}
+
+.avatar {
+    margin: 40px;
+    width: 250px;
+    height: 250px;
+    border-radius:50%;
+}
+
+.name {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.album-song-brief {
+    display: flex;
+    max-height: 5%;
+    max-width: 25%;
+    top: 45%;
+    align-items: center;
+    align-content: center;
+    background-color: rgba(1,1,1,0.5);
+}
+
+.nav-font {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 20px;
+}
+
+.nav-font:hover {
+    opacity: 0.5;
+}
+
+.nav-font:active {
+    opacity: 1;
+}
+
+.content {
+    display: flex;
+    height: 100%;
+    max-width: 100%;
+    top: 50%;
+    align-items: flex-start;
+    align-content: flex-start;
+    background-color: rgba(1,1,1,0.5);
+}
+
+.album {
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 85%;
+    align-items: flex-start;
+}
+
+.one-row {
+    display: flex;
+    max-width: 100%;
+    height: 250px;
+    justify-items: start;
+}
+
+.info {
+    max-width: 200px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.album-name {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.brief {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    top: 10px;
+    width: 95%;
+    height: 50%;
+    justify-items: flex-start;
+    justify-content: flex-start;
+}
+
+.brief-front {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 12px;
+}
+
+.song {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    top: 10px;
+    width: 95%;
+    height: 50%;
+    justify-items: flex-start;
+    justify-content: flex-start;
+}
+
+.list-card-show {
+    animation: showAni;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.list-card-hide {
+    animation: hideAni;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.list-container {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    width: 100%;
+    height: 80%;
+    align-items: flex-start;
+
+}
+.list-item {
+    width: 20%; /* 每行显示5个元素，所以设置每个元素的宽度为20% */
+    height:200px;
+    padding: 5px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.background{
+    border: 2px solid #8B008B; /* 边框颜色和宽度 */
+    margin:0 auto;
+    width:85%;
+    height: 90%;
+
+}
+
+.background img {
+    width: 100%; /* 图片宽度填充父容器 */
+    height: 100%; /* 图片高度填充父容器 */
+    object-fit: cover; /* 使用cover保持纵横比，铺满容器 */
+}
+
+.text{
+    position: relative;
+    color: white;
+    font-size: 15px;
+    overflow: hidden;
+}
+
+.button {
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 15px;
+    letter-spacing: 4px;
+    position: relative;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: #fff;
+    text-align: center;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.button:hover {
+    background: #fff;
+    color: #000;
+}
+
+.button:after {
+    content: "";
+    background: #000000;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.button:focus { outline:0; }
+
+
+@keyframes hideAni {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes showAni {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}

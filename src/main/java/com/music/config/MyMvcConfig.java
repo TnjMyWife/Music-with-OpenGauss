@@ -19,6 +19,30 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/register.html").setViewName("register");
+
+        registry.addViewController("/browserArtist").setViewName("browserArtist");
+        registry.addViewController("/browserArtist.html").setViewName("browserArtist");
+
+        registry.addViewController("/browserAlbum").setViewName("browserAlbum");
+        registry.addViewController("/browserAlbum.html").setViewName("browserAlbum");
+
+        registry.addViewController("/artistPage").setViewName("artistPage");
+        registry.addViewController("/artistPage.html").setViewName("artistPage");
+
+        registry.addViewController("/user").setViewName("user");
+        registry.addViewController("/user.html").setViewName("user");
+
+        registry.addViewController("/song").setViewName("song");
+        registry.addViewController("/song.html").setViewName("song");
+
+        registry.addViewController("/listSong").setViewName("listSong");
+        registry.addViewController("/listSong.html").setViewName("listSong");
+
+        registry.addViewController("/albumpage").setViewName("albumpage");
+        registry.addViewController("/albumpage.html").setViewName("albumpage");
+
+        registry.addViewController("/searchPage").setViewName("searchPage");
+        registry.addViewController("/searchPage.html").setViewName("searchPage");
     }
 /*
     @Override
