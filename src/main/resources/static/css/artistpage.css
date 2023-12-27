@@ -1,0 +1,118 @@
+.main {
+    height: 95%;
+    width: 80%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    right: 2%;
+}
+
+.avatar-name {
+    display: flex;
+    height: 40%;
+    max-width: 90%;
+    top: 5%;
+    align-items: center;
+    align-content: center;
+}
+
+.avatar {
+    margin: 40px;
+    width: 250px;
+    height: 250px;
+    border-radius:50%;
+}
+
+.name {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.album-song-brief {
+    display: flex;
+    max-height: 5%;
+    max-width: 18%;
+    top: 45%;
+    align-items: center;
+    align-content: center;
+    background-color: rgba(1,1,1,0.5);
+}
+
+.nav-font {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 20px;
+}
+
+.nav-font:hover {
+    opacity: 0.5;
+}
+
+.nav-font:active {
+    opacity: 1;
+}
+
+.content {
+    display: flex;
+    height: 100%;
+    max-width: 100%;
+    top: 50%;
+    align-items: flex-start;
+    align-content: flex-start;
+    background-color: rgba(1,1,1,0.5);
+}
+
+.album {
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80%;
+    align-items: flex-start;
+}
+
+.one-row {
+    display: flex;
+    max-width: 100%;
+    height: 300px;
+    justify-items: start;
+}
+
+.info {
+    max-width: 200px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.album-name {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.brief {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: none;
+    top: 10px;
+    width: 95%;
+    height: 50%;
+    justify-items: flex-start;
+    justify-content: flex-start;
+}
+
+.brief-front {
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 15px;
+}
+
+
+
+

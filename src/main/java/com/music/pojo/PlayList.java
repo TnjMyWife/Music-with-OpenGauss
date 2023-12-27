@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "playlist") // 指定关联的数据库的表名
@@ -30,7 +32,11 @@ public class PlayList implements Serializable {
             joinColumns = @JoinColumn(name = "list_id"),       // 将本表id，存储到第三方表
             inverseJoinColumns = @JoinColumn(name = "song_id")       // 将对方表id，存储到第三方表
     )
-    private List<Song> songs;
+    private Set<Song> songs=new HashSet<>();
+
+    public Set<Song> getSongs(){
+        return songs;
+    }
 
     public Integer getListId() {
         return listId;

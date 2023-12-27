@@ -1,8 +1,13 @@
-body {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+/* 固定全局导航栏背景 */
+@supports ((-webkit-backdrop-filter: saturate(180%) blur(20px)) or (backdrop-filter: saturate(180%) blur(20px))) {
+    #ac-globalnav {
+        background: rgba(0, 0, 0, 0.8);
+        -webkit-backdrop-filter: saturate(180%) blur(20px);
+        backdrop-filter: saturate(180%) blur(20px);
+    }
 }
+
+
 
 /* 播放器样式设置*/
 .audio-box {
@@ -229,8 +234,8 @@ body {
 }
 
 /*
-  Sidebar
-*/
+ * Sidebar
+ */
 
 .sidebar {
     position: fixed;
@@ -313,13 +318,12 @@ body {
 }
 
 .list-area {
-    overflow: auto;
     display: none;
     position: fixed;
     height: 100%;
     right: 0;
     top: 50px;
-    width: 33%;
+    width: 20%;
     background-color: rgba(1,1,1,0.5);
 }
 
@@ -407,3 +411,314 @@ body {
 }
 
 
+
+.albuminside1 {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    z-index: 11;
+
+}
+
+.cover_inside {
+
+    position: absolute;
+
+    top: 30px; /* 调整顶部距离 */
+    left: 30px; /* 调整左侧距离 */
+    bottom: 0;
+    aspect-ratio: 1 / 1;
+    z-index: 11;
+}
+
+.album_info1 {
+
+    position: absolute;
+    width: 500px;
+    /*height: 100px;*/
+    top: 50%; /* 调整顶部距离 */
+    left: 35%;
+    bottom: 0;
+    z-index: 11;
+    filter: opacity(0.8);
+
+}
+
+.album-name_inside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*transform: translate(-50%, -50%);*/
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 30px;
+    font-weight: bold;
+    z-index: 11;
+    filter: drop-shadow(16px 16px 2px black);
+
+}   /* 歌曲名 */
+
+
+.artist-name_inside {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /*transform: translate(-50%, -50%);*/
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 11;
+    filter: drop-shadow(16px 16px 2px black);
+
+}   /* 艺人名字 */
+
+
+.albuminside2 {
+    position: absolute;
+    top: 31%;
+    left: 0;
+    width: 100%;
+    height: 5%;
+    z-index: 11;
+    filter: opacity(0.2);
+}
+.publisher_inside {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    /*transform: translate(-50%, -50%);*/
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 10px;
+    font-weight: bold;
+    z-index: 11;
+}   /* 艺人名字 */
+
+
+.albuminside3 {
+    position: absolute;
+    top: 37%;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 11;
+    overflow-y: auto; /* 启用垂直滚动条 */
+}
+
+.song1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 100%;
+    z-index: 11;
+
+}
+
+.song1:active{
+    opacity: 1;
+}
+.song1:hover{
+    opacity: 0.5;
+}
+
+
+
+.song2{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%;
+    height: 100%;
+    z-index: 11;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.song2:active{
+    opacity: 1;
+}
+
+.song2:hover{
+    opacity: 0.5;
+}
+
+
+.song-no_inside{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 30px;
+    width: 5%;
+    z-index: 11;
+}
+
+.song-title_inside{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 10%;
+    width: 50%;
+    z-index: 11;
+}
+
+.song-dura_inside{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 5%;
+    z-index: 11;
+}
+
+.song-number_inside {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 11;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}   /* 歌曲名 */
+
+
+.song-name_inside {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 11;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}   /* 歌曲名 */
+
+.song-duration_inside{
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    font-family: "SimHei", sans-serif;
+    color: ghostwhite;
+    font-size: 15px;
+    font-weight: bold;
+    z-index: 11;
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.child-element {
+    position: absolute;
+    width: 100%;
+    height: 8%;
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+
+/* add歌单列表 */
+.no-add-area {
+    display: none;
+    /*position: fixed;*/
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 75%;
+    z-index: 15;
+}
+
+.add-area {
+    display: none;
+    /*position: fixed;*/
+    height: 100%;
+    right: 0;
+    top: 50px;
+    width: 20%;
+    background-color: rgba(1,1,1,0.5);
+    z-index: 15;
+}
+
+.music-add-container {
+    width: 100%;
+}
+
+.music-add-title {
+    color: white;
+    font-size: 2rem;
+    font-weight: 300;
+    padding: 10% 15% 0% 15%;
+}
+
+.line {
+    height: 1px;
+    width: 70%;
+    border: none;
+    border-top: 1px dashed #4F4F4F;
+}
+
+.all-add div {
+    height: 50px;
+    line-height: 50px;
+    color: white;
+    font-weight: 300;
+    padding: 0% 15% 0% 15%;
+}
+
+.all-add div:hover {
+    background: linear-gradient(90deg, black, #3f0016);
+    cursor: default;
+}
+
+.add-card-show {
+    animation: showAnii;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+
+.add-card-hide {
+    animation: hideAnii;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    -webkit-animation-fill-mode: forwards;
+}
+@keyframes hideAnii {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes showAnii {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}

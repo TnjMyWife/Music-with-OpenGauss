@@ -24,4 +24,27 @@ public interface userDao extends JpaRepository<User, Integer>, Serializable {
     @Query(value = "select count(*) from music_user",nativeQuery = true)
     int userCount();
 
+    @Transactional
+    @Modifying
+    @Query(value = "update music_user set user_name=:#{#name} where user_id=:#{#id}",nativeQuery = true)
+    void userFixName(int id,String name);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update music_user set gender=:#{#gender} where user_id=:#{#id}",nativeQuery = true)
+    void userFixGender(int id,String gender);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update music_user set email=:#{#email} where user_id=:#{#id}",nativeQuery = true)
+    void userFixEmail(int id,String email);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update music_user set signature=:#{#signature} where user_id=:#{#id}",nativeQuery = true)
+    void userFixSignature(int id,String signature);
+    @Transactional
+    @Modifying
+    @Query(value = "update music_user set avatar=:#{#avatar} where user_id=:#{#id}",nativeQuery = true)
+    void userFixAvatar(int id,String avatar);
 }

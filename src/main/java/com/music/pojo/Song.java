@@ -3,6 +3,8 @@ package com.music.pojo;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "song") // 指定关联的数据库的表名
@@ -31,6 +33,11 @@ public class Song implements Serializable {
     @Column(name = "mv")
     private String mv;
 
+    @ManyToMany(mappedBy = "songs")
+    private Set<PlayList> playLists=new HashSet<>();
+    public Set<PlayList> getPlayLists(){
+        return playLists;
+    }
     public Integer getSongId() {
         return songId;
     }

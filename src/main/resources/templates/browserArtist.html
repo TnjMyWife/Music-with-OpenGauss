@@ -10,10 +10,8 @@
 		<title>Dark Radio</title>
 		<!-- Bootstrap core CSS -->
 		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-		<!-- Custom styles for this template -->
 		<link th:href="@{/css/homepage.css}" rel="stylesheet">
-		<link th:href="@{/css/userHome.css}" rel="stylesheet" >
-
+		<link th:href="@{/css/browserArtist.css}" rel="stylesheet">
 		<style type="text/css">
 			body {
 				background:url("/img/交互界面背景.gif")  no-repeat center;   /*加载背景图*/   /* 背景图不平铺 */
@@ -35,22 +33,12 @@
 			</div>
 			<!-- 左边按钮 -->
 			<div class="left-button-container">
-				<!-- 播放模式 -->
-				<div id="playMode" class="left-icon bg_size">
-					<img id="playModeImg" class="mb-1" th:src="@{/img/mode1.png}" alt="" width="20" height="20">
-				</div>
-				<!-- 上一首 -->
-				<div id="skipForward" class="left-icon bg_size">
-					<img class="mb-1" th:src="@{/img/上一首.png}" alt="" width="20" height="20">
-				</div>
+
 				<!-- 暂停按钮 -->
 				<div id="playPause" class="left-icon bg_size">
 					<img id="playImg" class="mb-1" th:src="@{/img/暂停.png}" alt="" width="20" height="20">
 				</div>
-				<!-- 下一首 -->
-				<div id="skipBackward" class="left-icon bg_size">
-					<img class=" mb-1" th:src="@{/img/下一首.png}" alt="" width="20" height="20">
-				</div>
+
 			</div>
 			<div class="cover">
 				<img class="mb-1" th:src="@{/img/cover1.jpg}" alt="" width="50" height="50">
@@ -75,11 +63,6 @@
 
 			<!-- 后部按钮 -->
 			<div class="bottom-button-container">
-				<!-- MV -->
-				<div id="MV" class="bottom-icon bg_size">
-					<img class="mb-1" th:src="@{/img/MV.png}" alt="" width="20" height="20">
-				</div>
-
 
 				<!-- 倍速 -->
 				<div id="speed" class="speed">1.0X</div>
@@ -137,24 +120,7 @@
 				</ul>
 
 				<div class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-					  <span>我的歌单</span>
-					<a class="d-flex align-items-center text-muted" href="#" id="popup-trigger">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-					</a>
-					<div class="popup" id="popup" th:each="playlist, stat : ${session.myList}" >
-						<form class="form-signin" action="/user/playlist" enctype="multipart/form-data" method="post" >
-							<input type="hidden" id="currentPage" name="page">
-							<input style="display: none" name="user_id"  th:if="${stat.first}" th:value="${playlist.user.userId}">
-							<label class="sr-only">Username</label>
-							<input class="input-usename" type="text" name="listName" placeholder="Username">
-							<select class="select-gender" id="delName" name="delName" title="Choose a name">
-								<option value="default">请选择要删除的歌单</option>
-								<option  th:each="list, stat2 : ${session.myList}" th:if="${stat2.index!=0}" th:text="${list.listName}"></option>
-							</select>
-							<button class="sub-mit" type="submit">提交</button>
-							<button class="can-cel" id="close-popup">关闭</button>
-						</form>
-					</div>
+					<span>我的歌单</span>
 				</div>
 				<ul class="nav flex-column mb-2">
 					<li class="nav-item" th:each="playlist,stat : ${session.myList}" th:if="${stat.index == 0}">
@@ -172,23 +138,20 @@
 			</div>
 		</nav>
 
-		<!-- 音乐列表 -->
-		<div class="no-list-area" id="no-list-area"></div>
-		<div class="list-area" id="list-area">
-			<div class="music-list-container">
-				<div class="music-list-title">播放队列</div>
-				<hr class="line">
-				<div class="all-list">
-					<div id="music0">如愿</div>
-					<div id="music1">Yellow</div>
-					<div id="music2">A Sky Full of Star</div>
-					<div id="music3">The Scientist</div>
+
+		<div class="main">
+			<div class="container" th:with="colSize=${5}, rowSize=${artists.size()/colSize}, rowSize=${(artists.size()%colSize==0 ? rowSize : (rowSize+1))}">
+				<div th:if="${artists.size() gt 0}" th:each="rowIdx:${#numbers.sequence(1, rowSize)}" class="one-row" id="oneRow">
+					<div th:each="colIdx:${#numbers.sequence(1,colSize)}"
+						 th:with="idx=${(rowIdx - 1) * colSize + colIdx - 1}"
+						 th:if="${idx < artists.size()}" class="info" >
+						<img th:if="${idx < artists.size()}" th:src="@{${artists[idx].artistImg}}" alt="" width="200" height="200" >
+						<a th:if="${idx < artists.size()}" th:text="${artists[idx].artistName}" class="name mt-2 mb-2" th:href="'javascript:getUrlOneArtist(' + ${artists[idx].artistId} + ')'"></a>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- MV区域 -->
-		<div id = "mv-area" class="MV-area"></div>
 
 		<script th:src="@{/js/top-nav.js}"></script>
 		<script>
@@ -214,24 +177,9 @@
 			function getUrlBrowserAlbum(){
 				window.location.href="/browser_album?user_id="+url
 			}
-			function getUrlSearch(){
-				window.location.href="/search?user_id="+url
+			function getUrlOneArtist(artistId){
+				window.location.href="/one_artist?user_id="+url+"&artist_id="+artistId
 			}
-		</script>
-		<script>
-			document.addEventListener('DOMContentLoaded', function() {
-				var popupTrigger = document.getElementById('popup-trigger');
-				var popup = document.getElementById('popup');
-				var closePopup = document.getElementById('close-popup');
-
-				popupTrigger.addEventListener('click', function() {
-					popup.style.display = 'block';
-				});
-
-				closePopup.addEventListener('click', function() {
-					popup.style.display = 'none';
-				});
-			});
 		</script>
 		<script>
 			// 使用 JavaScript 获取当前页面的路径并设置为隐藏字段的值
@@ -243,13 +191,6 @@
 				// 构建带有参数的URL
 				// 通过编程方式进行页面导航
 				window.location.href = '/list?user_id=' + param1 + '&listName=' + param2;
-			}
-		</script>
-		<script>
-			function redirectToSearch(param1, param2) {
-				// 构建带有参数的URL
-				// 通过编程方式进行页面导航
-				window.location.href = '/search?user_id=' + param1 + '&query_string=' + param2;
 			}
 		</script>
 		<script>

@@ -1,0 +1,423 @@
+
+.overlay {
+    position: fixed;
+    top: 50px;
+    left: 375px;
+    height: 100%;
+    width: 65%;
+    display: flex;
+    background: rgba(0, 0, 0, 0.7); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    justify-content: center;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+}
+
+.photo-frame {
+    border: 4px solid #8B008B; /* 边框颜色和宽度 */
+    padding: 5px; /* 边框内部的内边距 */
+    width: 200px; /* 照片方框的宽度 */
+    height: 200px; /* 照片方框的高度 */
+    position: absolute; /* 使用绝对定位 */
+    top: 7%; /* 从顶部50%的位置开始 */
+    left: 7%; /* 从左侧50%的位置开始 */
+    text-align: center;
+}
+.photo-frame img {
+    width: 100%; /* 图片宽度填充父容器 */
+    height: 100%; /* 图片高度填充父容器 */
+    object-fit: cover; /* 使用cover保持纵横比，铺满容器 */
+}
+
+.transparent-box {
+    width: 500px;
+    height: 200px;
+    line-height: 100px; /* 使文本垂直居中 */
+    position: absolute; /* 为了使绝对定位生效 */
+    top: 7%;
+    left: 30%;
+    text-align: center;
+}
+.name {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    transform: translate(-5%, -5%);
+}
+
+.xiu-gai {
+    width: 100px;
+    height: 30px;
+    line-height: 30px; /* 调整为和高度一样，使文本垂直居中 */
+    background:#333; /* 使用渐变实现灰白色，您也可以直接指定固定颜色值 */
+    position: absolute;
+    top: 7%;
+    left: 75%;
+    text-align: center;
+    border-radius: 10px; /* 设置边框半径，调整为适当的值，以实现圆角效果 */
+    font-size: 10px; /* 根据需要调整字体大小的数值 */
+}
+
+.color-t{
+    color:white;
+}
+
+.signature{
+    position: absolute;
+    top: 60%;
+    left: 5%;
+    text-align: center;
+    font-size: 15px; /* 根据需要调整字体大小的数值 */
+}
+.gender{
+    position: absolute;
+    top: 30%;
+    left: 5%;
+    text-align: center;
+    font-size: 15px; /* 根据需要调整字体大小的数值 */
+}
+.email{
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    text-align: center;
+    font-size: 15px; /* 根据需要调整字体大小的数值 */
+}
+.popup {
+    position: fixed;
+    top: 50px;
+    left: 375px;
+    width: 65%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+
+}
+#popup {
+    display: none;
+}
+
+.form-signin {
+    position: fixed;
+    top: 50px;
+    left: 375px;
+    width: 65%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.input-usename{
+    position: fixed;
+    top: 20%;
+    left: 32%;
+    width: 250px;
+    height: 40px;
+    background: rgba(0, 0, 0); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+    display: flex;
+    font-size: 20px;
+    border: 1px solid white;
+}
+
+.input-email{
+    position: fixed;
+    top: 30%;
+    left: 32%;
+    width: 250px;
+    height: 40px;
+    background: rgba(0, 0, 0); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+    display: flex;
+    font-size: 20px;
+    border: 1px solid white;
+}
+
+.select-gender{
+    position: fixed;
+    top: 40%;
+    left: 32%;
+    width: 250px;
+    height: 40px;
+    background: rgba(0, 0, 0); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+    display: flex;
+    font-size: 20px;
+    border: 1px solid white;
+}
+.input-signature{
+    position: fixed;
+    top: 50%;
+    left: 32%;
+    width: 250px;
+    height: 40px;
+    background: rgba(0, 0, 0); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+    display: flex;
+    font-size: 20px;
+    border: 1px solid white;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* 自定义样式的上传按钮 */
+.custom-upload-btn {
+    position: fixed;
+    top: 50%;
+    left: 58%;
+    width: 250px;
+    height: 40px;
+    display: flex;
+    padding: 10px 15px;
+    cursor: pointer;
+    background: rgba(0, 0, 0); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+    font-size: 20px;
+    border: 1px solid white;
+}
+
+/* 设置鼠标悬停时的样式 */
+.custom-upload-btn:hover {
+    background-color: white; /* 悬停时的背景颜色 */
+    color: #000000; /* 悬停时的文本颜色，你可以根据需要调整 */
+}
+
+.photo-frame1 {
+    border: 4px solid #ffffff; /* 边框颜色和宽度 */
+    padding: 5px; /* 边框内部的内边距 */
+    width: 200px; /* 照片方框的宽度 */
+    height: 200px; /* 照片方框的高度 */
+    position: absolute; /* 使用绝对定位 */
+    top: 9%; /* 从顶部50%的位置开始 */
+    left: 50%; /* 从左侧50%的位置开始 */
+    text-align: center;
+}
+.photo-frame1 img {
+    width: 100%; /* 图片宽度填充父容器 */
+    height: 100%; /* 图片高度填充父容器 */
+    object-fit: cover; /* 使用cover保持纵横比，铺满容器 */
+}
+
+.sub-mit{
+    position: fixed;
+    top: 67%;
+    left: 42%;
+    width: 80px;
+    height: 40px;
+    background: rgba(0, 0, 0); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+    display: flex;
+    font-size: 20px;
+    border: 1px solid white;
+}
+.sub-mit:hover {
+    background-color: white; /* 悬停时的背景颜色 */
+    color: #000000; /* 悬停时的文本颜色，你可以根据需要调整 */
+}
+
+.can-cel{
+    position: fixed;
+    top: 67%;
+    left: 59%;
+    width: 80px;
+    height: 40px;
+    background: rgba(0, 0, 0); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    z-index: 1000; /* 确保黑框在其他元素之上 */
+    justify-content: center;
+    border-radius: 10px;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+    display: flex;
+    font-size: 20px;
+    border: 1px solid white;
+}
+.can-cel:hover {
+    background-color: white; /* 悬停时的背景颜色 */
+    color: #000000; /* 悬停时的文本颜色，你可以根据需要调整 */
+}
+
+.List-container{
+    position: fixed;
+    top: 53%;
+    left: 390px;
+    width: 63%;
+    height: 47%;
+    background: rgba(0, 0, 0, 0.5); /* 使用rgba表示颜色，最后一个参数(0.5)表示透明度，可根据需要调整 */
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    color: white; /* 设置文本颜色为白色，可根据需要调整 */
+    overflow-y: auto;
+}
+
+.List-song {
+    border: 2px solid  rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.List-width{
+    position: relative;
+    top:20%;
+    height: 50%;
+    left:20px;
+    flex: 1;
+}
+.text-style{
+    position: relative;
+    font-size: 15px;
+    left:3%;
+}
+.List-width-1{
+    position: relative;
+    top:20%;
+    height: 50%;
+    flex: 1;
+}
+.text-style-1{
+    position: relative;
+    font-size: 12px;
+    left:0%;
+}
+.List-width-2{
+    position: relative;
+    top:20%;
+    height: 50%;
+    flex: 1;
+}
+.text-style-2{
+    position: relative;
+    font-size: 12px;
+    left:0%;
+}
+.List-width-3{
+    position: relative;
+    top:20%;
+    height: 50%;
+    flex: 1;
+}
+.text-style-3{
+    position: relative;
+    font-size: 12px;
+    left:0%;
+}
+.button {
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 15px;
+    letter-spacing: 4px;
+    position: relative;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    color: #fff;
+    text-align: center;
+    transition-duration: 0.4s;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.button:hover {
+    background: #fff;
+    color: #000;
+}
+
+.button:after {
+    content: "";
+    background: #000000;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+}
+
+.button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+}
+
+.button:focus { outline:0; }
+
+.type-yue{
+    position: absolute; /* 使用绝对定位 */
+    top: 280px; /* 从顶部50%的位置开始 */
+    left: 110px; /* 从左侧50%的位置开始 */
+    text-align: center;
+    font-size:20px
+}
+.type-yue-1{
+    position: absolute; /* 使用绝对定位 */
+    top: 280px; /* 从顶部50%的位置开始 */
+    left: 270px; /* 从左侧50%的位置开始 */
+    text-align: center;
+    font-size:20px
+}
+.type-yue-2{
+    position: absolute; /* 使用绝对定位 */
+    top: 280px; /* 从顶部50%的位置开始 */
+    left: 470px; /* 从左侧50%的位置开始 */
+    text-align: center;
+    font-size:20px
+}
+.type-yue-3{
+    position: absolute; /* 使用绝对定位 */
+    top: 280px; /* 从顶部50%的位置开始 */
+    left: 710px; /* 从左侧50%的位置开始 */
+    text-align: center;
+    font-size:20px
+}
+
